@@ -1,0 +1,248 @@
+.user-form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+  }
+  
+  .header-section {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: space-between;
+  
+    .header-img {
+      display: flex;
+      gap: 6px;
+      width: 40%;
+    }
+  }
+  
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .user-details {
+    h6 {
+      margin: 0;
+      font-size: 16px;
+    }
+  
+    p {
+      margin: 2px 0;
+      font-size: 14px;
+    }
+  }
+  
+  .relation-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 3px;
+    font-size: 12px;
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        margin-right: 10px;
+  
+        &:last-child {
+          margin-right: 0;
+        }
+    }
+
+    label {
+        color: rgba(0, 0, 0, 0.87);
+        font-size: 12px;
+        font-weight: bold;
+    }
+  
+    select {
+      padding-block: 2px;
+    }
+  
+    .user-id {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+  }
+  
+  .user-form-container {
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+  
+    select, input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  }
+  
+  .send-request-button, .submit-button {
+    background: #f75d81;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .relation-section button.send-request-button {
+    font-size: 11px;
+    margin-top: 2px;
+  }
+  
+  .send-request-button:hover, .submit-button:hover {
+    background: #e54c70;
+  }
+  
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .create-new-text {
+    text-align: center;
+    margin-top: 20px;
+  
+    a {
+      color: #f75d81;
+      text-decoration: none;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  .user-form-container .user-details h2 {
+    font-size: 16px;
+  }
+  
+  .flex-input {
+    display: flex;
+    flex-wrap: wrap;
+  
+    label {
+      width: 100%;
+    }
+  
+    input {
+      width: 48%;
+      margin-right: 10px;
+    }
+  }
+  
+  .flex-title {
+    display: flex;
+    justify-content: space-between;
+  
+    .input-fields-section, .create-new-text {
+      width: 48%;
+    }
+
+    .input-fields-section {
+        label {
+            color: rgba(0, 0, 0, 0.87);
+            font-size: 13px;
+            font-weight: bold;
+        }
+        #master-id {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    }
+
+    .create-new-text {
+        font-size: 12px;
+    }
+  }
+  
+  .user-form-container .relation-section p span {
+    color: #e54c70;
+  }
+  
+  .flex-title .input-fields-section form {
+    .input-container {
+      width: 100%;
+  
+      .master-id-main {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 10px;
+  
+        &:last-child {
+          margin-bottom: 0;
+        }
+  
+        .master-id-box {
+          display: flex;
+          align-items: center;
+          background: #fdd1d9;
+          width: 100%;
+  
+          p {
+            padding: 7px;
+            min-width: 38px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0;
+            font-size: 14px;
+          }
+  
+          div {
+            padding: 7px;
+            border-left: 1px solid #f75d81;
+          }
+  
+          input {
+            border: none;
+            background: #d8d8d8;
+            color: #000;
+            width: 100%;
+            font-size: 13px;
+          }
+        }
+  
+        button {
+          margin-top: 0;
+          border-radius: 1px;
+          margin: auto;
+          font-size: 12px;
+          padding: 8px 16px;
+        }
+      }
+    }
+  
+    .form-row {
+      padding-top: 20px;
+  
+      label {
+        color: #e65678;
+      }
+    }
+  }
+  
