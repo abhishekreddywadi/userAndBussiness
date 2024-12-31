@@ -46,12 +46,7 @@ function AccountSettings() {
           <Tab eventKey="home" title="User Account">
             <AccountSettingTabs profileData={true} />
           </Tab>
-          <Tab eventKey="profile" title="Individual Account">
-            <AccountSettingTabs />
-          </Tab>
-          <Tab eventKey="Quartarly" title="Business Account">
-            <AccountSettingTabs />
-          </Tab>
+        
         </Tabs>
       </Container>
     </div>
