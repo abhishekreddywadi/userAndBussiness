@@ -1,3 +1,4 @@
+import React from "react";
 import "./signupStep.scss";
 import UserImg from "../../../../assets/user.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,8 +7,11 @@ import {
   faPhone,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 
 function SignupStep() {
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <>
       <div className="signup-step">
@@ -17,9 +21,11 @@ function SignupStep() {
               <img src={UserImg} alt="user-img" />
             </span>
             <div className="details">
-              <h5>Shree Ganesh</h5>
+              <h5>
+                {user?.firstName} {user?.lastName}
+              </h5>
               <p>
-                USER ID / <strong>MU_123456</strong>
+                USER ID / <strong>{user?.userCode}</strong>
               </p>
               <ul>
                 <li>

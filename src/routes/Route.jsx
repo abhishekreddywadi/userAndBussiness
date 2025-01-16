@@ -1,5 +1,6 @@
 import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Sidebar from "../components/sidebar/Sidebar";
 import Dashboard from "../pages/user-dashboard/dashboard/Dashboard";
 import BusinessAccount from "../pages/business-dashboard/account/BusinessAccount";
@@ -24,47 +25,174 @@ import ViewService from "../pages/master-dashboard/services/viewService/ViewServ
 import ServiceBilling from "../pages/master-dashboard/services/viewService/serviceBilling/ServiceBilling";
 import ManageCourse from "../pages/master-dashboard/courses/manageCourse/ManageCourse";
 import ViewCourse from "../pages/master-dashboard/courses/viewCourse/ViewCourse";
+import Login from "../pages/Authentication/Login";
+import AgeSelection from "../pages/Authentication/AgeSelection";
+import RegistrationForm from "../pages/Authentication/RegistrationForm";
+import AdultRegistrationForm from "../pages/Authentication/AdultRegistrationForm";
+import ForgotPassword from "../pages/Authentication/ForgotPassword";
+import ResetPassword from "../pages/Authentication/ResetPassword";
+import PrivateRoute from "../components/PrivateRoute";
+import NotFound from "../pages/NotFound";
 
 const Routing = () => {
-  // const location = useLocation();
-  // const shouldShowSideBar = location.pathname !== '/';
-
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  
   return (
     <div className="routes">
-      {/* {shouldShowSideBar && <Sidebar />} */}
-      <Sidebar />
+      {isAuthenticated && <Sidebar />}
       <Routes>
-        <Route path="/" element={<IndividualProfile />} />
-        <Route path="/user-home" element={<Dashboard />} />
-        <Route path="/business-account" element={<BusinessAccount />} />
-        <Route path="/mi-form" element={<MIForm />} />
-        <Route path="/mb-form" element={<MbForm />} />
-        <Route path="/individual-settings" element={<IndividualSettings />} />
-        <Route path="/individual-account" element={<IndividualSettings />} />
-        <Route path="/business-setting" element={<IndividualSettings />} />
-        <Route
-          path="/individual-account-setting"
-          element={<AccountSettings />}
-        />
-        <Route path="/account-settings" element={<AccountSettings />} />
-        <Route path="/master-profile" element={<MasterProfile />} />
-        <Route path="/master-account" element={<MasterAccount />} />
-        <Route path="/view-staff" element={<MasterAccount />} />
-        <Route path="/view-user" element={<MasterAccount />} />
-        <Route path="/staff-attendance" element={<StaffAttendance />} />
-        <Route path="/master-plan" element={<MasterPlan />} />
-        <Route path="/add-plan" element={<AddPlan />} />
-        <Route path="/user-attendance" element={<UserAttendance />} />
-        <Route path="/batch" element={<BatchClass />} />
-        <Route path="/view-events" element={<ViewEvents />} />
-        <Route path="/make-payment" element={<MakePayment />} />
-        <Route path="/household" element={<Household />} />
-        <Route path="/add-user" element={<AddUser />} />
-        <Route path="/add-staff" element={<AddStaff />} />
-        <Route path="/view-service" element={<ViewService />} />
-        <Route path="/view-service/billing" element={<ServiceBilling />} />
-        <Route path="/view-course" element={<ViewCourse />} />
-        <Route path="/manage-course" element={<ManageCourse />} />
+        {/* Public Routes */}
+        <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/" />} />
+        <Route path="/signup" element={!isAuthenticated ? <AgeSelection /> : <Navigate to="/" />} />
+        <Route path="/register/below16" element={<RegistrationForm />} />
+        <Route path="/register/above16" element={<AdultRegistrationForm />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+
+        {/* Protected Routes */}
+        <Route path="/" element={
+          <PrivateRoute>
+            <IndividualProfile />
+          </PrivateRoute>
+        } />
+        <Route path="/user-home" element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        } />
+        <Route path="/business-account" element={
+          <PrivateRoute>
+            <BusinessAccount />
+          </PrivateRoute>
+        } />
+        <Route path="/mi-form" element={
+          <PrivateRoute>
+            <MIForm />
+          </PrivateRoute>
+        } />
+        <Route path="/mb-form" element={
+          <PrivateRoute>
+            <MbForm />
+          </PrivateRoute>
+        } />
+        <Route path="/individual-settings" element={
+          <PrivateRoute>
+            <IndividualSettings />
+          </PrivateRoute>
+        } />
+        <Route path="/individual-account" element={
+          <PrivateRoute>
+            <IndividualSettings />
+          </PrivateRoute>
+        } />
+        <Route path="/business-setting" element={
+          <PrivateRoute>
+            <IndividualSettings />
+          </PrivateRoute>
+        } />
+        <Route path="/individual-account-setting" element={
+          <PrivateRoute>
+            <AccountSettings />
+          </PrivateRoute>
+        } />
+        <Route path="/account-settings" element={
+          <PrivateRoute>
+            <AccountSettings />
+          </PrivateRoute>
+        } />
+        <Route path="/master-profile" element={
+          <PrivateRoute>
+            <MasterProfile />
+          </PrivateRoute>
+        } />
+        <Route path="/master-account" element={
+          <PrivateRoute>
+            <MasterAccount />
+          </PrivateRoute>
+        } />
+        <Route path="/view-staff" element={
+          <PrivateRoute>
+            <MasterAccount />
+          </PrivateRoute>
+        } />
+        <Route path="/view-user" element={
+          <PrivateRoute>
+            <MasterAccount />
+          </PrivateRoute>
+        } />
+        <Route path="/staff-attendance" element={
+          <PrivateRoute>
+            <StaffAttendance />
+          </PrivateRoute>
+        } />
+        <Route path="/master-plan" element={
+          <PrivateRoute>
+            <MasterPlan />
+          </PrivateRoute>
+        } />
+        <Route path="/add-plan" element={
+          <PrivateRoute>
+            <AddPlan />
+          </PrivateRoute>
+        } />
+        <Route path="/user-attendance" element={
+          <PrivateRoute>
+            <UserAttendance />
+          </PrivateRoute>
+        } />
+        <Route path="/batch" element={
+          <PrivateRoute>
+            <BatchClass />
+          </PrivateRoute>
+        } />
+        <Route path="/view-events" element={
+          <PrivateRoute>
+            <ViewEvents />
+          </PrivateRoute>
+        } />
+        <Route path="/make-payment" element={
+          <PrivateRoute>
+            <MakePayment />
+          </PrivateRoute>
+        } />
+        <Route path="/household" element={
+          <PrivateRoute>
+            <Household />
+          </PrivateRoute>
+        } />
+        <Route path="/add-user" element={
+          <PrivateRoute>
+            <AddUser />
+          </PrivateRoute>
+        } />
+        <Route path="/add-staff" element={
+          <PrivateRoute>
+            <AddStaff />
+          </PrivateRoute>
+        } />
+        <Route path="/view-service" element={
+          <PrivateRoute>
+            <ViewService />
+          </PrivateRoute>
+        } />
+        <Route path="/view-service/billing" element={
+          <PrivateRoute>
+            <ServiceBilling />
+          </PrivateRoute>
+        } />
+        <Route path="/view-course" element={
+          <PrivateRoute>
+            <ViewCourse />
+          </PrivateRoute>
+        } />
+        <Route path="/manage-course" element={
+          <PrivateRoute>
+            <ManageCourse />
+          </PrivateRoute>
+        } />
+        
+        {/* 404 Route - This should be the last route */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

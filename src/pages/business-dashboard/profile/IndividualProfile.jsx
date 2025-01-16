@@ -50,10 +50,13 @@ function IndividualProfile() {
     setCurrentStep(1);
 
   };
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  console.log(userData);
   return (
     <div className={`dashboard ${navButtonClick && "dashboard-full"}`}>
       <Container>
         <Header />
+       
         <div className="progress-container">
           <div className="progress-bar">
             <div className="progress-bar-main">
