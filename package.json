@@ -7,10 +7,12 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "powershell -Command \"if(!(Test-Path public/slick)){ New-Item -ItemType Directory -Force -Path public/slick }; Copy-Item node_modules/slick-carousel/slick/* public/slick/ -Force\""
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@reduxjs/toolkit": "^2.5.0",
@@ -28,9 +30,11 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^6.26.1",
     "react-select": "^5.8.0",
+    "react-slick": "^0.30.3",
     "react-webcam": "^7.2.0",
     "redux-persist": "^6.0.0",
-    "sass": "^1.77.8"
+    "sass": "^1.77.8",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

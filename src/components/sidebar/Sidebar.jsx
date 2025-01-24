@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
 import BriefcaseIcon from "../../assets/accountant.png";
@@ -7,11 +7,26 @@ import ProfileImg from "../../assets/profile.jpg";
 
 import "./sidebar.scss";
 import UserContext from "../../context/UserContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Modal from "react-bootstrap/Modal";
 
 const Sidebar = () => {
   const { navButtonClick } = useContext(UserContext);
-
+  const [verified, setVerified] = useState(false);
+  const [showVerifyModal, setShowVerifyModal] = useState(false);
+  const [passkey, setPasskey] = useState("");
+  const [verifyError, setVerifyError] = useState("");
   console.log("navButtonClick", navButtonClick);
+  const handleVerifySubmit = () => {
+    if (passkey === '123456') { // Replace with your actual verification logic
+      setVerified(true);
+      setShowVerifyModal(false);
+      setPasskey('');
+      setVerifyError('');
+    } else {
+      setVerifyError('Invalid passkey. Please try again.');
+    }
+  };
   return (
     <div
       className={`sidebar d-flex flex-column ${
@@ -77,6 +92,8 @@ const Sidebar = () => {
         <strong>Business Account</strong>
       </p>
 
+      {verified ? (
+        <div>
       <ul className="nav nav-pills flex-column mb-auto gap-2">
         <Accordion className="d-flex flex-column mb-auto gap-2">
           <Accordion.Item eventKey="0">
@@ -887,6 +904,58 @@ const Sidebar = () => {
           </Accordion.Item>
         </Accordion>
       </ul>
+      </div>
+      ): <div className="lock-content text-center d-flex flex-column align-items-center text-white py-5 px-4 ">
+      <div className="icon-container mb-3">
+        <img 
+          src={AccountantIcon} 
+          alt="icon" 
+          style={{
+            width: "60px", 
+            height: "60px",
+            filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.2))"
+          }} 
+        />
+      </div>
+      <h6 className="fw-bold mb-2">Account Registration and  Verification Required</h6>
+      <p className="text-light-50 mb-3" style={{ fontSize: "13px", opacity: 0.85 }}>
+        Please Enter the pass key to access features
+      </p>
+      <button 
+        className="btn btn-outline-light btn-sm rounded-pill px-4" 
+        style={{ fontSize: "12px", letterSpacing: "0.5px" }}
+        onClick={() => setShowVerifyModal(true)}
+      >
+        Verify Now
+      </button>
+  </div>}
+  <Modal show={showVerifyModal} onHide={() => setShowVerifyModal(false)} centered>
+  <Modal.Header closeButton>
+    <Modal.Title>Account Verification</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <div className="mb-3">
+      <label htmlFor="passkey" className="form-label">Enter Passkey</label>
+      <input
+        type="password"
+        className="form-control"
+        id="passkey"
+        value={passkey}
+        onChange={(e) => setPasskey(e.target.value)}
+        placeholder="Enter your passkey"
+      />
+      {verifyError && <div className="text-danger mt-2">{verifyError}</div>}
+    </div>
+  </Modal.Body>
+  <Modal.Footer>
+    <button className="btn btn-secondary" onClick={() => setShowVerifyModal(false)}>
+      Cancel
+    </button>
+    <button className="btn btn-primary" onClick={handleVerifySubmit}>
+      Verify
+    </button>
+  </Modal.Footer>
+</Modal>
     </div>
   );
 };

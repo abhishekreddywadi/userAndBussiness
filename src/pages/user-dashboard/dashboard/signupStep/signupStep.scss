@@ -125,6 +125,54 @@
 			}
 		}
 	}
+	.upload-box {
+		background-color: #f8f9fa;
+		border: 2px dashed #dee2e6 !important;
+		transition: all 0.3s ease;
+		min-height: 150px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&:hover {
+			border-color: #0d6efd !important;
+			background-color: #f1f4f9;
+		}
+
+		.preview-container {
+			width: 100%;
+			
+			.img-preview {
+				max-width: 100%;
+				max-height: 200px;
+				object-fit: contain;
+				border-radius: 4px;
+			}
+
+			.remove-image {
+				position: absolute;
+				top: -10px;
+				right: -10px;
+				border-radius: 50%;
+				padding: 0.25rem 0.5rem;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+			}
+		}
+
+		.fa-upload {
+			color: #6c757d;
+		}
+
+		label {
+			cursor: pointer;
+			margin-top: 8px;
+		}
+	}
+	.modal-content {
+		.form-label {
+			font-weight: 500;
+		}
+	}
 }
 p {
 	&.signup-footer-note {

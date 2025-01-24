@@ -33,6 +33,10 @@ import ForgotPassword from "../pages/Authentication/ForgotPassword";
 import ResetPassword from "../pages/Authentication/ResetPassword";
 import PrivateRoute from "../components/PrivateRoute";
 import NotFound from "../pages/NotFound";
+import Homepage from "../components/home/Homepage";
+import Contact from "../components/contact/Contact";
+import About from "../pages/about/About";
+import BrandDetails from '../pages/brands/BrandDetails';
 
 const Routing = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -48,6 +52,13 @@ const Routing = () => {
         <Route path="/register/above16" element={<AdultRegistrationForm />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/aboutus" element={<About />} />
+        <Route path="/brands/:brandId" element={<BrandDetails />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/home" element={<Homepage />} />
+
 
         {/* Protected Routes */}
         <Route path="/" element={

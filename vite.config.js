@@ -16,5 +16,17 @@ export default defineConfig({
   },
   server: {
     historyApiFallback: true
+  },
+  css: {
+    preprocessorOptions: {
+      css: {
+        javascriptEnabled: true
+      }
+    }
+  },
+  resolve: {
+    alias: {
+      'slick-carousel': 'node_modules/slick-carousel'
+    }
   }
 })
